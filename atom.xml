@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Vmake]]></title>
+  <subtitle><![CDATA[Linus Song's personal blog]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://LinusSong.github.io/"/>
+  <updated>2015-04-02T11:27:40.680Z</updated>
+  <id>http://LinusSong.github.io/</id>
+  
+  <author>
+    <name><![CDATA[Linus Song]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[ubuntu系统中文乱码问题]]></title>
+    <link href="http://LinusSong.github.io/2015/04/02/ubuntu%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://LinusSong.github.io/2015/04/02/ubuntu系统中文乱码问题/</id>
+    <published>2015-04-01T16:54:25.000Z</published>
+    <updated>2015-04-02T11:27:40.680Z</updated>
+    <content type="html"><![CDATA[<p>收集各种原因造成的中文乱码问题。</p>
+<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用enca转换">推荐方法：用enca转换</h3><blockquote>
+<p>enca -L zh_CN file # 检查文件的编码<br>enca -L zh_CN -x UTF-8 file # 将文件编码转换为”UTF-8”编码<br>enca -L zh_CN -x UTF-8 file1 file2 # 如果不想覆盖原文件可以这样</p>
+</blockquote>
+<p>注意enca对于过小的文件(只有一两个字的)可能无法判断编码，可以用</p>
+<blockquote>
+<p>iconv -f GBK -t UTF-8 file1 -o file2</p>
+</blockquote>
+<p>来修正，注意iconv不会自动检测编码，原来是UTF-8的文件会乱码。</p>
+<h3 id="次等方法：自动检测">次等方法：自动检测</h3><p><strong>注意此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
+<p>打开终端，输入如下两条指令</p>
+<blockquote>
+<p>gsettings set org.gnome.gedit.preferences.encodings auto-detected “[‘GB18030’, ‘GB2312’, ‘GBK’, ‘UTF-8’, ‘BIG5’, ‘CURRENT’, ‘UTF-16’]”<br>gsettings set org.gnome.gedit.preferences.encodings shown-in-menu “[‘GB18030’, ‘GB2312’, ‘GBK’, ‘UTF-8’, ‘BIG5’, ‘CURRENT’, ‘UTF-16’]”</p>
+</blockquote>
+<p>重新启动 Gedit ，就能够正常显示中文内容了。<br>上述两条指令相当于打开 应用程序-系统工具-配置编辑器（或者在终端里输入：gconf-editor——此软件需要安装——执行sudo apt-get install gconf-editor），在 apps/gedit-2/preferences/encodings 下建立 auto-detected shown-in-menu 两个子键，子键内容如上。<br>完成上述设置后，gedit就可以自动检测文本文件的字符集，并正确显示 windows 下创建的文本以GBK文件了</p>
+<h2 id="压缩文件乱码">压缩文件乱码</h2><p><strong>rar:</strong><br>卸载unrar和rar，在软件中心安装7z及rar插件。<br><strong>zip:</strong><br>对于在windows下创建的zip，使用参数-O cp936即可</p>
+<blockquote>
+<p>unzip -O cp936 xx.zip</p>
+</blockquote>
+<p>或者安装convmv，假设zip文件名为abc.zip，那么:</p>
+<blockquote>
+<p>LANG=C 7z x abc.zip<br>convmv -f gbk -t utf8 —notest —nosmart -r .</p>
+</blockquote>
+<h2 id="文件名乱码">文件名乱码</h2><p>常见于zip解压后的乱码文件及部分GBK编码网站下载文件乱码（如cnki.net）</p>
+<p>方法一：下载这个Pyhton脚本：<a href="https://github.com/muzuiget/python-scripts/blob/master/utf8-filename.py" target="_blank" rel="external">https://github.com/muzuiget/python-scripts/blob/master/utf8-filename.py</a><br>然后在/usr/bin下面创建链接</p>
+<blockquote>
+<p>ln -s utf8-filename.py /usr/bin/utf8-filename</p>
+</blockquote>
+<p>然后用以下命令即可：</p>
+<blockquote>
+<p>utf8-filename file</p>
+</blockquote>
+<p>方法二：进入要转换的文件夹里：</p>
+<blockquote>
+<p>convmv -f utf8 -t iso-8859-1 -r —notest <em> &amp;&amp; convmv -f GBK -t utf8 -r —notest </em></p>
+</blockquote>
+<h2 id="VPS在终端中显示乱码">VPS在终端中显示乱码</h2><h3 id="修改Ubuntu默认的中文字符编码">修改Ubuntu默认的中文字符编码</h3><p>Ubuntu默认的中文字符编码为zh_CN.UTF-8，这个可以在/etc/environment中看到：</p>
+<blockquote>
+<p>PATH=”/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games”<br>LANG=”zh_CN.UTF-8”<br>LANGUAGE=”zh_CN:zh:en_US:en”</p>
+</blockquote>
+<p> 第二行即是默认的中文字符编码。注：可以通过这里修改默认的中文编码字符，比如修改为：zh_CN.GBK。</p>
+<h3 id="添加中文字符编码的方法">添加中文字符编码的方法</h3><p>A. 直接使用locale-gen在终端输入命令：</p>
+<blockquote>
+<p>sudo locale-gen zh_CN.GB18030</p>
+</blockquote>
+<p>即可完成中文字符集的添加。完成后可以转到/usr/lib/locale/，下面已经有一个zh_CN.gb18030文件夹；在终端输入命令：</p>
+<blockquote>
+<p>cat /var/lib/locales/supported.d/local</p>
+</blockquote>
+<p>可以发现文件中多了一行：zh_CN.GB18030 GB18030。说明添加成功。</p>
+<p>B. 通过修改/var/lib/locales/supported.d/local文件</p>
+<blockquote>
+<p>sudo gedit /var/lib/locales/supported.d/local</p>
+</blockquote>
+<p>可以看到如下内容：</p>
+<blockquote>
+<p>zh_CN.UTF-8 UTF-8<br>en_US.UTF-8 UTF-8</p>
+</blockquote>
+<p>在文件尾添加中文字符集</p>
+<blockquote>
+<p>zh_CN.GBK GBK</p>
+</blockquote>
+<p>保存后退出。在终端输入命令：</p>
+<blockquote>
+<p>sudo dpkg-reconfigure locales</p>
+</blockquote>
+<p>即可生成相应文件：/usr/lib/locale/zh_CN.gbk/<br>最后重启ubuntu。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>收集各种原因造成的中文乱码问题。</p>
+<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用enca转换">推荐方法：用enca转换</h3><blockquote>
+<p>enca -L zh_CN file #]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://LinusSong.github.io/2015/04/02/hello-world/"/>
+    <id>http://LinusSong.github.io/2015/04/02/hello-world/</id>
+    <published>2015-04-01T16:50:14.710Z</published>
+    <updated>2015-04-01T16:50:14.710Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+  </entry>
+  
+</feed>
