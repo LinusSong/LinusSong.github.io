@@ -4,14 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>ubuntu系统中文乱码问题 | Vmake</title>
+    <title>ubuntu的中文乱码问题 | Vmake</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Linus Song">
     
-    <meta name="description" content="收集各种原因造成的中文乱码问题。
-打开GBK编码文件出现乱码推荐方法：用enca转换
-enca -L zh_CN file # 检查文件的编码enca -L zh_CN -x UTF-8 file # 将文件编码转换为”UTF-8”编码enca -L zh_CN -x UTF-8 file1 fil">
+    <meta name="description" content="由于Windows系统使用GB编码，而Linux使用UTF-8编码，所以在Linux下面常常会出现中文乱码问题，对于常见的乱码问题，总结了一些解决方法。
+打开GBK编码文件出现乱码推荐方法：用enca转换最好的办法就是直接把文件转换为UTF-8编码。
+
+enca -L zh_CN file # 检查">
     
     
     
@@ -69,7 +70,7 @@ enca -L zh_CN file # 检查文件的编码enca -L zh_CN -x UTF-8 file # 将文�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/02/ubuntu系统中文乱码问题/" title="ubuntu系统中文乱码问题" itemprop="url">ubuntu系统中文乱码问题</a>
+      <a href="/2015/04/02/ubuntu系统中文乱码问题/" title="ubuntu的中文乱码问题" itemprop="url">ubuntu的中文乱码问题</a>
   </h1>
   <p class="article-author">By
     
@@ -77,7 +78,7 @@ enca -L zh_CN file # 检查文件的编码enca -L zh_CN -x UTF-8 file # 将文�
     </p>
   <p class="article-time">
     <time datetime="2015-04-01T16:54:25.000Z" itemprop="datePublished">2015-04-02</time>
-    更新日期:<time datetime="2015-04-02T11:27:40.680Z" itemprop="dateModified">2015-04-02</time>
+    更新日期:<time datetime="2015-04-02T12:33:43.440Z" itemprop="dateModified">2015-04-02</time>
     
   </p>
 </header>
@@ -86,11 +87,12 @@ enca -L zh_CN file # 检查文件的编码enca -L zh_CN -x UTF-8 file # 将文�
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开GBK编码文件出现乱码"><span class="toc-number">1.</span> <span class="toc-text">打开GBK编码文件出现乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐方法：用enca转换"><span class="toc-number">1.1.</span> <span class="toc-text">推荐方法：用enca转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#次等方法：自动检测"><span class="toc-number">1.2.</span> <span class="toc-text">次等方法：自动检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩文件乱码"><span class="toc-number">2.</span> <span class="toc-text">压缩文件乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件名乱码"><span class="toc-number">3.</span> <span class="toc-text">文件名乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS在终端中显示乱码"><span class="toc-number">4.</span> <span class="toc-text">VPS在终端中显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改Ubuntu默认的中文字符编码"><span class="toc-number">4.1.</span> <span class="toc-text">修改Ubuntu默认的中文字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加中文字符编码的方法"><span class="toc-number">4.2.</span> <span class="toc-text">添加中文字符编码的方法</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开GBK编码文件出现乱码"><span class="toc-number">1.</span> <span class="toc-text">打开GBK编码文件出现乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐方法：用enca转换"><span class="toc-number">1.1.</span> <span class="toc-text">推荐方法：用enca转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他方法：自动检测"><span class="toc-number">1.2.</span> <span class="toc-text">其他方法：自动检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩文件乱码"><span class="toc-number">2.</span> <span class="toc-text">压缩文件乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件名乱码"><span class="toc-number">3.</span> <span class="toc-text">文件名乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS在终端中显示乱码"><span class="toc-number">4.</span> <span class="toc-text">VPS在终端中显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改Ubuntu默认的中文字符编码"><span class="toc-number">4.1.</span> <span class="toc-text">修改Ubuntu默认的中文字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加中文字符编码的方法"><span class="toc-number">4.2.</span> <span class="toc-text">添加中文字符编码的方法</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>收集各种原因造成的中文乱码问题。</p>
-<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用enca转换">推荐方法：用enca转换</h3><blockquote>
+		<p>由于Windows系统使用GB编码，而Linux使用UTF-8编码，所以在Linux下面常常会出现中文乱码问题，对于常见的乱码问题，总结了一些解决方法。</p>
+<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用enca转换">推荐方法：用enca转换</h3><p>最好的办法就是直接把文件转换为UTF-8编码。</p>
+<blockquote>
 <p>enca -L zh_CN file # 检查文件的编码<br>enca -L zh_CN -x UTF-8 file # 将文件编码转换为”UTF-8”编码<br>enca -L zh_CN -x UTF-8 file1 file2 # 如果不想覆盖原文件可以这样</p>
 </blockquote>
 <p>注意enca对于过小的文件(只有一两个字的)可能无法判断编码，可以用</p>
@@ -98,12 +100,12 @@ enca -L zh_CN file # 检查文件的编码enca -L zh_CN -x UTF-8 file # 将文�
 <p>iconv -f GBK -t UTF-8 file1 -o file2</p>
 </blockquote>
 <p>来修正，注意iconv不会自动检测编码，原来是UTF-8的文件会乱码。</p>
-<h3 id="次等方法：自动检测">次等方法：自动检测</h3><p><strong>注意此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
+<h3 id="其他方法：自动检测">其他方法：自动检测</h3><p><strong>注意此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
 <p>打开终端，输入如下两条指令</p>
 <blockquote>
 <p>gsettings set org.gnome.gedit.preferences.encodings auto-detected “[‘GB18030’, ‘GB2312’, ‘GBK’, ‘UTF-8’, ‘BIG5’, ‘CURRENT’, ‘UTF-16’]”<br>gsettings set org.gnome.gedit.preferences.encodings shown-in-menu “[‘GB18030’, ‘GB2312’, ‘GBK’, ‘UTF-8’, ‘BIG5’, ‘CURRENT’, ‘UTF-16’]”</p>
 </blockquote>
-<p>重新启动 Gedit ，就能够正常显示中文内容了。<br>上述两条指令相当于打开 应用程序-系统工具-配置编辑器（或者在终端里输入：gconf-editor——此软件需要安装——执行sudo apt-get install gconf-editor），在 apps/gedit-2/preferences/encodings 下建立 auto-detected shown-in-menu 两个子键，子键内容如上。<br>完成上述设置后，gedit就可以自动检测文本文件的字符集，并正确显示 windows 下创建的文本以GBK文件了</p>
+<p>重新启动 Gedit ，就能够正常显示中文内容了。<br>上述两条指令相当于打开 应用程序-系统工具-配置编辑器（或者在终端里输入：gconf-editor——此软件需要安装——执行sudo apt-get install gconf-editor），在 apps/gedit-2/preferences/encodings 下建立 auto-detected shown-in-menu 两个子键，子键内容如上。<br>完成上述设置后，gedit就可以自动检测文本文件的字符集，并正确显示 windows 下创建的文本以GBK文件了。<br><strong>再次提醒此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
 <h2 id="压缩文件乱码">压缩文件乱码</h2><p><strong>rar:</strong><br>卸载unrar和rar，在软件中心安装7z及rar插件。<br><strong>zip:</strong><br>对于在windows下创建的zip，使用参数-O cp936即可</p>
 <blockquote>
 <p>unzip -O cp936 xx.zip</p>
@@ -165,7 +167,7 @@ enca -L zh_CN file # 检查文件的编码enca -L zh_CN -x UTF-8 file # 将文�
 
 <div class="article-share" id="share">
 
-  <div data-url="http://LinusSong.github.io/2015/04/02/ubuntu系统中文乱码问题/" data-title="ubuntu系统中文乱码问题 | Vmake" data-tsina="null" class="share clearfix">
+  <div data-url="http://LinusSong.github.io/2015/04/02/ubuntu系统中文乱码问题/" data-title="ubuntu的中文乱码问题 | Vmake" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -191,7 +193,7 @@ enca -L zh_CN file # 检查文件的编码enca -L zh_CN -x UTF-8 file # 将文�
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开GBK编码文件出现乱码"><span class="toc-number">1.</span> <span class="toc-text">打开GBK编码文件出现乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐方法：用enca转换"><span class="toc-number">1.1.</span> <span class="toc-text">推荐方法：用enca转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#次等方法：自动检测"><span class="toc-number">1.2.</span> <span class="toc-text">次等方法：自动检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩文件乱码"><span class="toc-number">2.</span> <span class="toc-text">压缩文件乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件名乱码"><span class="toc-number">3.</span> <span class="toc-text">文件名乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS在终端中显示乱码"><span class="toc-number">4.</span> <span class="toc-text">VPS在终端中显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改Ubuntu默认的中文字符编码"><span class="toc-number">4.1.</span> <span class="toc-text">修改Ubuntu默认的中文字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加中文字符编码的方法"><span class="toc-number">4.2.</span> <span class="toc-text">添加中文字符编码的方法</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开GBK编码文件出现乱码"><span class="toc-number">1.</span> <span class="toc-text">打开GBK编码文件出现乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐方法：用enca转换"><span class="toc-number">1.1.</span> <span class="toc-text">推荐方法：用enca转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他方法：自动检测"><span class="toc-number">1.2.</span> <span class="toc-text">其他方法：自动检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩文件乱码"><span class="toc-number">2.</span> <span class="toc-text">压缩文件乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件名乱码"><span class="toc-number">3.</span> <span class="toc-text">文件名乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS在终端中显示乱码"><span class="toc-number">4.</span> <span class="toc-text">VPS在终端中显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改Ubuntu默认的中文字符编码"><span class="toc-number">4.1.</span> <span class="toc-text">修改Ubuntu默认的中文字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加中文字符编码的方法"><span class="toc-number">4.2.</span> <span class="toc-text">添加中文字符编码的方法</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
@@ -343,6 +345,15 @@ $(document).ready(function(){
 
 
 
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-61481513-1', 'linussong.github.io');  
+ga('send', 'pageview');
+</script>
 
 
   </body>

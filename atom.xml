@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Linus Song's personal blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://LinusSong.github.io/"/>
-  <updated>2015-04-02T11:27:40.680Z</updated>
+  <updated>2015-04-02T12:33:43.440Z</updated>
   <id>http://LinusSong.github.io/</id>
   
   <author>
@@ -15,13 +15,14 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[ubuntu系统中文乱码问题]]></title>
+    <title><![CDATA[ubuntu的中文乱码问题]]></title>
     <link href="http://LinusSong.github.io/2015/04/02/ubuntu%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
     <id>http://LinusSong.github.io/2015/04/02/ubuntu系统中文乱码问题/</id>
     <published>2015-04-01T16:54:25.000Z</published>
-    <updated>2015-04-02T11:27:40.680Z</updated>
-    <content type="html"><![CDATA[<p>收集各种原因造成的中文乱码问题。</p>
-<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用enca转换">推荐方法：用enca转换</h3><blockquote>
+    <updated>2015-04-02T12:33:43.440Z</updated>
+    <content type="html"><![CDATA[<p>由于Windows系统使用GB编码，而Linux使用UTF-8编码，所以在Linux下面常常会出现中文乱码问题，对于常见的乱码问题，总结了一些解决方法。</p>
+<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用enca转换">推荐方法：用enca转换</h3><p>最好的办法就是直接把文件转换为UTF-8编码。</p>
+<blockquote>
 <p>enca -L zh_CN file # 检查文件的编码<br>enca -L zh_CN -x UTF-8 file # 将文件编码转换为”UTF-8”编码<br>enca -L zh_CN -x UTF-8 file1 file2 # 如果不想覆盖原文件可以这样</p>
 </blockquote>
 <p>注意enca对于过小的文件(只有一两个字的)可能无法判断编码，可以用</p>
@@ -29,12 +30,12 @@
 <p>iconv -f GBK -t UTF-8 file1 -o file2</p>
 </blockquote>
 <p>来修正，注意iconv不会自动检测编码，原来是UTF-8的文件会乱码。</p>
-<h3 id="次等方法：自动检测">次等方法：自动检测</h3><p><strong>注意此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
+<h3 id="其他方法：自动检测">其他方法：自动检测</h3><p><strong>注意此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
 <p>打开终端，输入如下两条指令</p>
 <blockquote>
 <p>gsettings set org.gnome.gedit.preferences.encodings auto-detected “[‘GB18030’, ‘GB2312’, ‘GBK’, ‘UTF-8’, ‘BIG5’, ‘CURRENT’, ‘UTF-16’]”<br>gsettings set org.gnome.gedit.preferences.encodings shown-in-menu “[‘GB18030’, ‘GB2312’, ‘GBK’, ‘UTF-8’, ‘BIG5’, ‘CURRENT’, ‘UTF-16’]”</p>
 </blockquote>
-<p>重新启动 Gedit ，就能够正常显示中文内容了。<br>上述两条指令相当于打开 应用程序-系统工具-配置编辑器（或者在终端里输入：gconf-editor——此软件需要安装——执行sudo apt-get install gconf-editor），在 apps/gedit-2/preferences/encodings 下建立 auto-detected shown-in-menu 两个子键，子键内容如上。<br>完成上述设置后，gedit就可以自动检测文本文件的字符集，并正确显示 windows 下创建的文本以GBK文件了</p>
+<p>重新启动 Gedit ，就能够正常显示中文内容了。<br>上述两条指令相当于打开 应用程序-系统工具-配置编辑器（或者在终端里输入：gconf-editor——此软件需要安装——执行sudo apt-get install gconf-editor），在 apps/gedit-2/preferences/encodings 下建立 auto-detected shown-in-menu 两个子键，子键内容如上。<br>完成上述设置后，gedit就可以自动检测文本文件的字符集，并正确显示 windows 下创建的文本以GBK文件了。<br><strong>再次提醒此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
 <h2 id="压缩文件乱码">压缩文件乱码</h2><p><strong>rar:</strong><br>卸载unrar和rar，在软件中心安装7z及rar插件。<br><strong>zip:</strong><br>对于在windows下创建的zip，使用参数-O cp936即可</p>
 <blockquote>
 <p>unzip -O cp936 xx.zip</p>
@@ -89,9 +90,8 @@
 <p>即可生成相应文件：/usr/lib/locale/zh_CN.gbk/<br>最后重启ubuntu。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>收集各种原因造成的中文乱码问题。</p>
-<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用enca转换">推荐方法：用enca转换</h3><blockquote>
-<p>enca -L zh_CN file #]]>
+    <![CDATA[<p>由于Windows系统使用GB编码，而Linux使用UTF-8编码，所以在Linux下面常常会出现中文乱码问题，对于常见的乱码问题，总结了一些解决方法。</p>
+<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用e]]>
     </summary>
     
   </entry>

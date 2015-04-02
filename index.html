@@ -66,14 +66,15 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/04/02/ubuntu系统中文乱码问题/" title="ubuntu系统中文乱码问题" itemprop="url">
+    <a href="/2015/04/02/ubuntu系统中文乱码问题/" title="ubuntu的中文乱码问题" itemprop="url">
   
-    <h1 itemprop="name">ubuntu系统中文乱码问题</h1>
+    <h1 itemprop="name">ubuntu的中文乱码问题</h1>
     
      
-           <p itemprop="description" >收集各种原因造成的中文乱码问题。
-打开GBK编码文件出现乱码推荐方法：用enca转换
-enca -L zh_CN file # 检查文件的编码enca -L zh_CN -x UTF-8 file # 将文件编码转换为”UTF-8”编码enca -L zh_CN -x UTF-8</p>
+           <p itemprop="description" >由于Windows系统使用GB编码，而Linux使用UTF-8编码，所以在Linux下面常常会出现中文乱码问题，对于常见的乱码问题，总结了一些解决方法。
+打开GBK编码文件出现乱码推荐方法：用enca转换最好的办法就是直接把文件转换为UTF-8编码。
+
+enca -L zh_CN</p>
         
     
     <time datetime="2015-04-01T16:54:25.000Z" itemprop="datePublished">2015-04-02</time>
@@ -185,6 +186,15 @@ $(document).ready(function(){
 
 
 
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-61481513-1', 'linussong.github.io');  
+ga('send', 'pageview');
+</script>
 
 
   </body>
