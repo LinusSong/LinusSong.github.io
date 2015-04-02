@@ -4,15 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>ubuntu的中文乱码问题 | Vmake</title>
+    <title>ubuntu中的中文乱码问题 | Vmake</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Linus Song">
     
     <meta name="description" content="由于Windows系统使用GB编码，而Linux使用UTF-8编码，所以在Linux下面常常会出现中文乱码问题，对于常见的乱码问题，总结了一些解决方法。
-打开GBK编码文件出现乱码推荐方法：用enca转换最好的办法就是直接把文件转换为UTF-8编码。
-
-enca -L zh_CN file # 检查">
+打开GBK编码文件出现乱码推荐方法：用enca转换123enca -L zh_CN file # 检查文件的编码enca -L zh_CN -x ">
     
     
     
@@ -70,7 +68,7 @@ enca -L zh_CN file # 检查">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/04/02/ubuntu系统中文乱码问题/" title="ubuntu的中文乱码问题" itemprop="url">ubuntu的中文乱码问题</a>
+      <a href="/2015/04/02/ubuntu系统中文乱码问题/" title="ubuntu中的中文乱码问题" itemprop="url">ubuntu中的中文乱码问题</a>
   </h1>
   <p class="article-author">By
     
@@ -78,7 +76,7 @@ enca -L zh_CN file # 检查">
     </p>
   <p class="article-time">
     <time datetime="2015-04-01T16:54:25.000Z" itemprop="datePublished">2015-04-02</time>
-    更新日期:<time datetime="2015-04-02T12:33:43.440Z" itemprop="dateModified">2015-04-02</time>
+    更新日期:<time datetime="2015-04-02T13:18:26.704Z" itemprop="dateModified">2015-04-02</time>
     
   </p>
 </header>
@@ -87,77 +85,32 @@ enca -L zh_CN file # 检查">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开GBK编码文件出现乱码"><span class="toc-number">1.</span> <span class="toc-text">打开GBK编码文件出现乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐方法：用enca转换"><span class="toc-number">1.1.</span> <span class="toc-text">推荐方法：用enca转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他方法：自动检测"><span class="toc-number">1.2.</span> <span class="toc-text">其他方法：自动检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩文件乱码"><span class="toc-number">2.</span> <span class="toc-text">压缩文件乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件名乱码"><span class="toc-number">3.</span> <span class="toc-text">文件名乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS在终端中显示乱码"><span class="toc-number">4.</span> <span class="toc-text">VPS在终端中显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改Ubuntu默认的中文字符编码"><span class="toc-number">4.1.</span> <span class="toc-text">修改Ubuntu默认的中文字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加中文字符编码的方法"><span class="toc-number">4.2.</span> <span class="toc-text">添加中文字符编码的方法</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开GBK编码文件出现乱码"><span class="toc-number">1.</span> <span class="toc-text">打开GBK编码文件出现乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐方法：用enca转换"><span class="toc-number">1.1.</span> <span class="toc-text">推荐方法：用enca转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#次等方法：自动检测"><span class="toc-number">1.2.</span> <span class="toc-text">次等方法：自动检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩文件乱码"><span class="toc-number">2.</span> <span class="toc-text">压缩文件乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件名乱码"><span class="toc-number">3.</span> <span class="toc-text">文件名乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS在终端中显示乱码"><span class="toc-number">4.</span> <span class="toc-text">VPS在终端中显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改Ubuntu默认的中文字符编码"><span class="toc-number">4.1.</span> <span class="toc-text">修改Ubuntu默认的中文字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加中文字符编码的方法"><span class="toc-number">4.2.</span> <span class="toc-text">添加中文字符编码的方法</span></a></li></ol></li></ol>
 		</div>
 		
 		<p>由于Windows系统使用GB编码，而Linux使用UTF-8编码，所以在Linux下面常常会出现中文乱码问题，对于常见的乱码问题，总结了一些解决方法。</p>
-<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用enca转换">推荐方法：用enca转换</h3><p>最好的办法就是直接把文件转换为UTF-8编码。</p>
-<blockquote>
-<p>enca -L zh_CN file # 检查文件的编码<br>enca -L zh_CN -x UTF-8 file # 将文件编码转换为”UTF-8”编码<br>enca -L zh_CN -x UTF-8 file1 file2 # 如果不想覆盖原文件可以这样</p>
-</blockquote>
-<p>注意enca对于过小的文件(只有一两个字的)可能无法判断编码，可以用</p>
-<blockquote>
-<p>iconv -f GBK -t UTF-8 file1 -o file2</p>
-</blockquote>
-<p>来修正，注意iconv不会自动检测编码，原来是UTF-8的文件会乱码。</p>
-<h3 id="其他方法：自动检测">其他方法：自动检测</h3><p><strong>注意此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
-<p>打开终端，输入如下两条指令</p>
-<blockquote>
-<p>gsettings set org.gnome.gedit.preferences.encodings auto-detected “[‘GB18030’, ‘GB2312’, ‘GBK’, ‘UTF-8’, ‘BIG5’, ‘CURRENT’, ‘UTF-16’]”<br>gsettings set org.gnome.gedit.preferences.encodings shown-in-menu “[‘GB18030’, ‘GB2312’, ‘GBK’, ‘UTF-8’, ‘BIG5’, ‘CURRENT’, ‘UTF-16’]”</p>
-</blockquote>
-<p>重新启动 Gedit ，就能够正常显示中文内容了。<br>上述两条指令相当于打开 应用程序-系统工具-配置编辑器（或者在终端里输入：gconf-editor——此软件需要安装——执行sudo apt-get install gconf-editor），在 apps/gedit-2/preferences/encodings 下建立 auto-detected shown-in-menu 两个子键，子键内容如上。<br>完成上述设置后，gedit就可以自动检测文本文件的字符集，并正确显示 windows 下创建的文本以GBK文件了。<br><strong>再次提醒此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
-<h2 id="压缩文件乱码">压缩文件乱码</h2><p><strong>rar:</strong><br>卸载unrar和rar，在软件中心安装7z及rar插件。<br><strong>zip:</strong><br>对于在windows下创建的zip，使用参数-O cp936即可</p>
-<blockquote>
-<p>unzip -O cp936 xx.zip</p>
-</blockquote>
-<p>或者安装convmv，假设zip文件名为abc.zip，那么:</p>
-<blockquote>
-<p>LANG=C 7z x abc.zip<br>convmv -f gbk -t utf8 —notest —nosmart -r .</p>
-</blockquote>
+<h2 id="打开GBK编码文件出现乱码">打开GBK编码文件出现乱码</h2><h3 id="推荐方法：用enca转换">推荐方法：用enca转换</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">enca -<span class="keyword">L</span> zh_CN <span class="keyword">file</span> # 检查文件的编码</span><br><span class="line">enca -<span class="keyword">L</span> zh_CN -x UTF-8 <span class="keyword">file</span> # 将文件编码转换为<span class="string">"UTF-8"</span>编码</span><br><span class="line">enca -<span class="keyword">L</span> zh_CN -x UTF-8 file1 file2 # 如果不想覆盖原文件可以这样</span><br></pre></td></tr></table></figure>
+<p>注意<code>enca</code>对于过小的文件(只有一两个字的)可能无法判断编码，可以用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iconv <span class="operator">-f</span> GBK -t UTF-<span class="number">8</span> file1 -o file2</span><br></pre></td></tr></table></figure></p>
+<p>来修正，注意<code>iconv</code>不会自动检测编码，原来是UTF-8的文件会乱码。</p>
+<h3 id="次等方法：自动检测">次等方法：自动检测</h3><p><strong>注意此方法可能因为自动检测失败而造成原本是UTF-8的文件乱码</strong></p>
+<p>打开终端，输入如下两条指令<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gsettings set org<span class="class">.gnome</span><span class="class">.gedit</span><span class="class">.preferences</span><span class="class">.encodings</span> <span class="attribute">auto</span>-detected <span class="string">"['GB18030', 'GB2312', 'GBK', 'UTF-8', 'BIG5', 'CURRENT', 'UTF-16']"</span></span><br><span class="line">gsettings set org<span class="class">.gnome</span><span class="class">.gedit</span><span class="class">.preferences</span><span class="class">.encodings</span> shown-<span class="keyword">in</span>-<span class="tag">menu</span> <span class="string">"['GB18030', 'GB2312', 'GBK', 'UTF-8', 'BIG5', 'CURRENT', 'UTF-16']"</span></span><br></pre></td></tr></table></figure></p>
+<p>重新启动 Gedit ，就能够正常显示中文内容了。<br>上述两条指令相当于打开 应用程序-系统工具-配置编辑器（或者在终端里输入：<code>gconf-editor</code>——此软件需要安装——执行<code>sudo apt-get install gconf-editor</code>），在<code>apps/gedit-2/preferences/encodings</code>下建立<code>auto-detected shown-in-menu</code> 两个子键，子键内容如上。<br>完成上述设置后，gedit就可以自动检测文本文件的字符集，并正确显示 windows 下创建的文本以GBK文件了</p>
+<h2 id="压缩文件乱码">压缩文件乱码</h2><p><strong>rar:</strong><br>卸载unrar和rar，在软件中心安装<code>7z</code>及<code>rar插件</code>。<br><strong>zip:</strong><br>对于在windows下创建的zip，使用参数<code>-O cp936</code>即可<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip -<span class="keyword">O</span> cp936 xx.zip</span><br></pre></td></tr></table></figure></p>
+<p>或者安装<code>convmv</code>，假设zip文件名为abc.zip，那么:<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">LANG=C</span> <span class="comment">7z</span> <span class="comment">x</span> <span class="comment">abc</span><span class="string">.</span><span class="comment">zip</span></span><br><span class="line"><span class="comment">convmv</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">gbk</span> <span class="literal">-</span><span class="comment">t</span> <span class="comment">utf8</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">notest</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">nosmart</span> <span class="literal">-</span><span class="comment">r</span> <span class="string">.</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="文件名乱码">文件名乱码</h2><p>常见于zip解压后的乱码文件及部分GBK编码网站下载文件乱码（如cnki.net）</p>
-<p>方法一：下载这个Pyhton脚本：<a href="https://github.com/muzuiget/python-scripts/blob/master/utf8-filename.py" target="_blank" rel="external">https://github.com/muzuiget/python-scripts/blob/master/utf8-filename.py</a><br>然后在/usr/bin下面创建链接</p>
-<blockquote>
-<p>ln -s utf8-filename.py /usr/bin/utf8-filename</p>
-</blockquote>
-<p>然后用以下命令即可：</p>
-<blockquote>
-<p>utf8-filename file</p>
-</blockquote>
-<p>方法二：进入要转换的文件夹里：</p>
-<blockquote>
-<p>convmv -f utf8 -t iso-8859-1 -r —notest <em> &amp;&amp; convmv -f GBK -t utf8 -r —notest </em></p>
-</blockquote>
-<h2 id="VPS在终端中显示乱码">VPS在终端中显示乱码</h2><h3 id="修改Ubuntu默认的中文字符编码">修改Ubuntu默认的中文字符编码</h3><p>Ubuntu默认的中文字符编码为zh_CN.UTF-8，这个可以在/etc/environment中看到：</p>
-<blockquote>
-<p>PATH=”/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games”<br>LANG=”zh_CN.UTF-8”<br>LANGUAGE=”zh_CN:zh:en_US:en”</p>
-</blockquote>
-<p> 第二行即是默认的中文字符编码。注：可以通过这里修改默认的中文编码字符，比如修改为：zh_CN.GBK。</p>
-<h3 id="添加中文字符编码的方法">添加中文字符编码的方法</h3><p>A. 直接使用locale-gen在终端输入命令：</p>
-<blockquote>
-<p>sudo locale-gen zh_CN.GB18030</p>
-</blockquote>
-<p>即可完成中文字符集的添加。完成后可以转到/usr/lib/locale/，下面已经有一个zh_CN.gb18030文件夹；在终端输入命令：</p>
-<blockquote>
-<p>cat /var/lib/locales/supported.d/local</p>
-</blockquote>
-<p>可以发现文件中多了一行：zh_CN.GB18030 GB18030。说明添加成功。</p>
-<p>B. 通过修改/var/lib/locales/supported.d/local文件</p>
-<blockquote>
-<p>sudo gedit /var/lib/locales/supported.d/local</p>
-</blockquote>
-<p>可以看到如下内容：</p>
-<blockquote>
-<p>zh_CN.UTF-8 UTF-8<br>en_US.UTF-8 UTF-8</p>
-</blockquote>
-<p>在文件尾添加中文字符集</p>
-<blockquote>
-<p>zh_CN.GBK GBK</p>
-</blockquote>
-<p>保存后退出。在终端输入命令：</p>
-<blockquote>
-<p>sudo dpkg-reconfigure locales</p>
-</blockquote>
-<p>即可生成相应文件：/usr/lib/locale/zh_CN.gbk/<br>最后重启ubuntu。</p>
+<p>方法一：下载这个Pyhton脚本：<a href="https://github.com/muzuiget/python-scripts/blob/master/utf8-filename.py" target="_blank" rel="external">https://github.com/muzuiget/python-scripts/blob/master/utf8-filename.py</a><br>然后在<code>/usr/bin</code>下面创建链接<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s utf8-filename<span class="class">.py</span> /usr/bin/utf8-filename</span><br></pre></td></tr></table></figure></p>
+<p>然后用以下命令即可：<br><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">utf8-<span class="keyword">filename</span> <span class="keyword">file</span></span><br></pre></td></tr></table></figure></p>
+<p>方法二：进入要转换的文件夹里：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convmv <span class="operator">-f</span> utf8 -t iso-<span class="number">8859</span>-<span class="number">1</span> -r --notest * &amp;&amp; convmv <span class="operator">-f</span> GBK -t utf8 -r --notest *</span><br></pre></td></tr></table></figure></p>
+<h2 id="VPS在终端中显示乱码">VPS在终端中显示乱码</h2><h3 id="修改Ubuntu默认的中文字符编码">修改Ubuntu默认的中文字符编码</h3><p>Ubuntu默认的中文字符编码为<code>zh_CN.UTF-8</code>，这个可以在<code>/etc/environment</code>中看到：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">PATH=<span class="value"><span class="string">"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"</span></span></span></span><br><span class="line"><span class="setting">LANG=<span class="value"><span class="string">"zh_CN.UTF-8"</span></span></span></span><br><span class="line"><span class="setting">LANGUAGE=<span class="value"><span class="string">"zh_CN:zh:en_US:en"</span></span></span></span><br></pre></td></tr></table></figure></p>
+<p> 第二行即是默认的中文字符编码。注：可以通过这里修改默认的中文编码字符，比如修改为：<code>zh_CN.GBK</code>。</p>
+<h3 id="添加中文字符编码的方法">添加中文字符编码的方法</h3><p>A. 直接使用locale-gen在终端输入命令：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">locale</span><span class="attribute">-gen</span> zh_CN<span class="built_in">.</span>GB18030</span><br></pre></td></tr></table></figure></p>
+<p>即可完成中文字符集的添加。完成后可以转到/usr/lib/locale/，下面已经有一个zh_CN.gb18030文件夹；在终端输入命令：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cat</span> /<span class="keyword">var</span>/lib/locales/supported.<span class="keyword">d</span>/<span class="keyword">local</span></span><br></pre></td></tr></table></figure></p>
+<p>可以发现文件中多了一行：<code>zh_CN.GB18030 GB18030</code>。说明添加成功。</p>
+<p>B. 通过修改<code>/var/lib/locales/supported.d/local</code>文件<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /<span class="keyword">var</span>/lib/locales/supported.<span class="keyword">d</span>/<span class="keyword">local</span></span><br></pre></td></tr></table></figure></p>
+<p>可以看到如下内容：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zh_CN<span class="class">.UTF-8</span> UTF-<span class="number">8</span></span><br><span class="line">en_US<span class="class">.UTF-8</span> UTF-<span class="number">8</span></span><br></pre></td></tr></table></figure></p>
+<p>在文件尾添加中文字符集<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zh_CN<span class="class">.GBK</span> GBK</span><br></pre></td></tr></table></figure></p>
+<p>保存后退出。在终端输入命令：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">sudo</span> dpkg-reconfigure locales</span><br></pre></td></tr></table></figure></p>
+<p>即可生成相应文件：<code>/usr/lib/locale/zh_CN.gbk</code><br>最后重启ubuntu。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -167,7 +120,7 @@ enca -L zh_CN file # 检查">
 
 <div class="article-share" id="share">
 
-  <div data-url="http://LinusSong.github.io/2015/04/02/ubuntu系统中文乱码问题/" data-title="ubuntu的中文乱码问题 | Vmake" data-tsina="null" class="share clearfix">
+  <div data-url="http://LinusSong.github.io/2015/04/02/ubuntu系统中文乱码问题/" data-title="ubuntu中的中文乱码问题 | Vmake" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -193,7 +146,7 @@ enca -L zh_CN file # 检查">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开GBK编码文件出现乱码"><span class="toc-number">1.</span> <span class="toc-text">打开GBK编码文件出现乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐方法：用enca转换"><span class="toc-number">1.1.</span> <span class="toc-text">推荐方法：用enca转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他方法：自动检测"><span class="toc-number">1.2.</span> <span class="toc-text">其他方法：自动检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩文件乱码"><span class="toc-number">2.</span> <span class="toc-text">压缩文件乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件名乱码"><span class="toc-number">3.</span> <span class="toc-text">文件名乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS在终端中显示乱码"><span class="toc-number">4.</span> <span class="toc-text">VPS在终端中显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改Ubuntu默认的中文字符编码"><span class="toc-number">4.1.</span> <span class="toc-text">修改Ubuntu默认的中文字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加中文字符编码的方法"><span class="toc-number">4.2.</span> <span class="toc-text">添加中文字符编码的方法</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打开GBK编码文件出现乱码"><span class="toc-number">1.</span> <span class="toc-text">打开GBK编码文件出现乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐方法：用enca转换"><span class="toc-number">1.1.</span> <span class="toc-text">推荐方法：用enca转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#次等方法：自动检测"><span class="toc-number">1.2.</span> <span class="toc-text">次等方法：自动检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩文件乱码"><span class="toc-number">2.</span> <span class="toc-text">压缩文件乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件名乱码"><span class="toc-number">3.</span> <span class="toc-text">文件名乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPS在终端中显示乱码"><span class="toc-number">4.</span> <span class="toc-text">VPS在终端中显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改Ubuntu默认的中文字符编码"><span class="toc-number">4.1.</span> <span class="toc-text">修改Ubuntu默认的中文字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加中文字符编码的方法"><span class="toc-number">4.2.</span> <span class="toc-text">添加中文字符编码的方法</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
